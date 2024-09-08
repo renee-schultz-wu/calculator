@@ -1,8 +1,6 @@
 body {
-    min-height: 100vh;
-    min-width: 100vw;
     display: flex;
-    /*justify-content: center;*/
+    justify-content: center;
 }
 
 
@@ -11,17 +9,38 @@ body {
 }
 
 
-.calculator {
+.main {
     display: flex;
-    border: 5px solid red;
+    border: 5px solid lightcoral;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
-    max-width: 30%;
     flex-wrap: wrap;
     align-self: center;
-    /*justify-self: center;*/
+    height: 75vh;
+    width: 400px;
+    min-height: 500px;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 15px;
+    background-color: hotpink;
 }
+
+.calculator {
+    min-width: 80%;
+}
+
+#display {
+    padding: 10px 20px;
+    border: 2px lightblue solid;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: lightcoral;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-height: 100px;
+  }
+
 
 
 .number {
@@ -29,6 +48,20 @@ body {
 
 }
 
-#numbers {
-    display: flex;
+#buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.btn {
+    padding: 20px;
+    border: 2px lightgray solid;
+    border-radius: 5px;
+    font-size: 20px;
+    /*    background-color: var(--btn);  */
 }
