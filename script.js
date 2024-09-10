@@ -1,6 +1,14 @@
 const nums = [];
 var o = "";
-const display = document.querySelector("#display");
+const top_display = document.querySelector("#top_display");
+const bottom_display = document.querySelector("#bottom_display");
+
+operators_dict = {
+    "add": " + ",
+    "subtract": " - ",
+    "multiply": " * ",
+    "divide": " / "
+};
 
 function add(a, b) {
     return a + b;
@@ -31,17 +39,18 @@ function operate(nums, o) {
     b = nums.pop();
     a = nums.pop();
     nums.length = 0;
+    let tempo = o;
 
-    if (o == "add") {
+    if (tempo == "add") {
         return add(a, b);
     }
-    else if (o == "subtract") {
+    else if (tempo == "subtract") {
         return subtract(a,b);
     }
-    else if (o == "multiply") {
+    else if (tempo == "multiply") {
         return multiply(a,b);
     }
-    else if (o == "divide") {
+    else if (tempo == "divide") {
         return divide(a, b);
     }
     else {
@@ -50,7 +59,21 @@ function operate(nums, o) {
 }
 
 function newDisplay(a){
-    display.textContent = a;
+    bottom_display.textContent = a;
+    console.log(nums);
+    console.log(o);
+}
+
+function topDisplay(){
+    let text = "";
+    text += nums[0];
+    if (o != "") {
+        text += operators_dict[o];
+    }
+    if (nums.length == 2) {
+        text += nums[1];
+    }
+    top_display.textContent = text;
 }
 
 const numbers = Array.from(document.querySelectorAll(".number"));
@@ -59,8 +82,9 @@ numbers.forEach(num => {
         temp = num.getAttribute("id");
         
         if (nums.length == 0){
-            newDisplay(temp);
             nums.push(parseInt(temp));
+            newDisplay(temp);
+            topDisplay();
         }
         else {
             if (o!="" && nums.length == 1){
@@ -70,6 +94,7 @@ numbers.forEach(num => {
             curr = parseInt(temp) + curr * 10;
             nums.push(curr);
             newDisplay(curr.toString());
+            topDisplay();
         }
     });
 });
@@ -81,14 +106,16 @@ operators.forEach(op => {
             calculate();
         }
         o = op.getAttribute("id");
+        topDisplay();
     })
 });
 
 function calculate(){
     res = operate(nums, o);
-    newDisplay(res.toString());
-    nums.push(res);
     o = "";
+    nums.push(res);
+    newDisplay(res.toString());
+    topDisplay();
 }
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", calculate);
@@ -96,7 +123,8 @@ equals.addEventListener("click", calculate);
 const clear = document.querySelector("#clear");
 clear.addEventListener("click", ()=> {
     nums.length = 0;
-    newDisplay("0");
     o = "";
     nums.push(0);
+    newDisplay("0");
+    topDisplay();
 })
