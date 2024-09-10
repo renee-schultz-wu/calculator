@@ -1,6 +1,7 @@
 body {
     display: flex;
     justify-content: center;
+    color: antiquewhite;
 }
 
 
@@ -41,12 +42,16 @@ body {
     min-height: 100px;
   }
 
+  #top_display {
+    font-size: 15px;
+  }
+
+  #bottom_display {
+    font-size: 35px;
+  }
 
 
-.number {
-    background-color: lightcoral;
 
-}
 
 #buttons-grid {
     display: grid;
@@ -63,5 +68,10 @@ body {
     border: 2px lightgray solid;
     border-radius: 5px;
     font-size: 20px;
-    /*    background-color: var(--btn);  */
+    color: lightcoral;
+}
+
+.number {
+    background-color: lightcoral;
+    color: antiquewhite;
 }
