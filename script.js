@@ -128,3 +128,16 @@ clear.addEventListener("click", ()=> {
     newDisplay("0");
     topDisplay();
 })
+
+const del = document.querySelector("#del");
+del.addEventListener("click", ()=> {
+    if (nums.length == 1) {
+        nums[0] = Math.floor(nums[0]/10);
+        newDisplay(nums[0]);
+    }
+    if (nums.length == 2) {
+        nums[1] = Math.floor(nums[1]/10);
+        newDisplay(nums[1]);
+    }
+    topDisplay();
+})
